@@ -13,39 +13,42 @@ var_red = DoubleVar()
 var_blue = DoubleVar()
 var_green = DoubleVar()
 
-# Function to update label
+# Functions to update each label of each LED
 def selectionRed(val):
     selection = f"Red LED Brightness Level: {int(float(val) * 100)}%"
     labelRed.config(text=selection)
-    RED_LED.value = float(val)  # PWM expects a float between 0.0 and 1.0
+    RED_LED.value = float(val)  # passing to PWM a float value
     
 def selectionBlue(val):
     selection = f"Blue LED Brightness Level: {int(float(val) * 100)}%"
     labelBlue.config(text=selection)
-    BLUE_LED.value = float(val)  # PWM expects a float between 0.0 and 1.0
+    BLUE_LED.value = float(val)  
     
 def selectionGreen(val):
     selection = f"Green LED Brightness Level: {int(float(val) * 100)}%"
     labelGreen.config(text=selection)
-    GREEN_LED.value = float(val)  # PWM expects a float between 0.0 and 1.0
+    GREEN_LED.value = float(val)  
 
-# Create the scale (0.0 to 1.0 for PWM)
+# Creating the scales for each LED brightness
+# Scale for Red LED
 RedLEDscale = Scale(win, variable=var_red, from_=0.0, to=1.0, resolution=0.01,
               orient=HORIZONTAL, length=320, label="RED LED",
               command=selectionRed, font="Lato")
 RedLEDscale.pack(pady=20)
 
+# Scale for Blue LED
 BlueLEDscale = Scale(win, variable=var_blue, from_=0.0, to=1.0, resolution=0.01,
               orient=HORIZONTAL, length=320, label="BLUE LED",
               command=selectionBlue, font="Lato")
 BlueLEDscale.pack(pady=20)
 
+# Scale for Green LED
 GreenLEDscale = Scale(win, variable=var_green, from_=0.0, to=1.0, resolution=0.01,
               orient=HORIZONTAL, length=320, label="GREEN LED",
               command=selectionGreen, font="Lato")
 GreenLEDscale.pack(pady=20)
 
-# Label to show brightness
+# Labels to show LED brightness
 labelRed = Label(win, font='Lato')
 labelRed.pack()
 labelBlue = Label(win, font='Lato')
